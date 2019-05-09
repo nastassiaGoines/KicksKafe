@@ -3,41 +3,45 @@ package Midterm;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShoppingCart  {
+public class ShoppingCart {
 
-	List<String> cart;
+	List<Items> cart;
 	double total;
 
 	public ShoppingCart() {
-		cart = new ArrayList<String>();
+		cart = new ArrayList<>();
 	}
 
-	public void addcart(String item) {
+	public void addcart(Items item) {
 		cart.add(item);
 	}
 
-	public void removecart(String item) {
+	public void removecart(Items item ) {
 		cart.remove(item);
 	}
 
-	public void getNumberOfcart() {
+	public void getNumberOfcart(Items item) {
 		System.out.println(cart.size());
 	}
 
-	public String getItemName(int index) {
+	public Items getItemName(int index) {
 		return cart.get(index);
 	}
 
-public void getTotalOfCart(){
-    total = 0;
-    for(String x: cart){
-        if (x.equals())){
-            total =;
-        }else if (x.equals()){
-            total =;
-        }else if (x.equals()){
-            total =;
+	public void addItem(String name, String description, double price) {
+            cart.add(new Items(name, description, price));
+            total= total+price;
         }
-    }
-    System.out.println(total);
+
+	public double removeItem(Items itemToRemove) {
+		total = total - itemToRemove.getPrice();
+		cart.remove(itemToRemove);
+	return(total);
+
+	}
 }
+
+
+
+
+
