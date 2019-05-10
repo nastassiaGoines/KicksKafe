@@ -1,0 +1,13 @@
+3.95:Beverages:Cappuccino:Classic Cap.
+1.95:Beverages:Coffee:Comes black, with room for you to fix it just the way you like.
+2.95:Beverages:Orange Juice:Fresh Florida flavor.
+2.95:Beverages:Apple Juice:Fresh from the orchard.
+5.95:Beverages:Smoothie:Blended to perfection from a daily mix of fruits.
+2.95:Snacks:Bagel:Everything Bagel, toasted to perfection with cream cheese spread.
+1.95:Snacks:Donut:Sprinkles or nothin.
+2.95:Snacks:Croissant:Soft, flakey, buttery.
+4.95:Snacks:Bfast Sandwich:English muffin, buttered, with scrambled egg, cheese and sausage.
+84.95:Apparel:Sneakers:The classic Nike style you love - with an added flair from the KicksKafe team.
+34.95:Apparel:T - Shirt:Athletic comfort, everyday style.
+54.95:Apparel:Sweatpants:Premium jogger fit.
+64.95:Apparel:Sweatshirt:"Super soft blended fabric, with the KicksKafe style.

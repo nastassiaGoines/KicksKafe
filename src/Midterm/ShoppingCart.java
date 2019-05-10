@@ -11,6 +11,10 @@ public class ShoppingCart {
 	public ShoppingCart() {
 		cart = new ArrayList<>();
 	}
+	
+	public ShoppingCart(ArrayList<Items> cart) {
+		this.cart = cart;
+	}
 
 	public void addcart(Items item) {
 		cart.add(item);
@@ -28,8 +32,8 @@ public class ShoppingCart {
 		return cart.get(index);
 	}
 
-	public void addItem(String name, String description, double price) {
-            cart.add(new Items(name, description, price));
+	public void addItem(String name, String category, String description, double price, int quantity) {
+            cart.add(new Items(name, category, description, price, quantity));
             total= total+price;
         }
 
@@ -39,6 +43,18 @@ public class ShoppingCart {
 	return(total);
 
 	}
+
+	public List<Items> getCart() {
+		return cart;
+	}
+
+	public void setCart(List<Items> cart) {
+		this.cart = cart;
+	}
+
+
+	
+	
 }
 
 

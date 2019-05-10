@@ -3,7 +3,7 @@ package Midterm;
 public class Apparel extends Items {
 
 	public void Sneakers(String name, String description, double price) {
-		name = "sneakers";
+		name = "Sneakers";
 		description = "The classic Nike style you love - with an added flair from the KicksKafe team.";
 		price = 84.95;
 
