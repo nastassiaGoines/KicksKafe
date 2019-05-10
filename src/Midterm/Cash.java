@@ -1,7 +1,5 @@
 package Midterm;
 
-import java.util.Scanner;
-
 public class Cash extends Payment {
 
 	private double change;

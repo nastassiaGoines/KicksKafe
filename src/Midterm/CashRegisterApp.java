@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class CashRegisterApp {
@@ -22,6 +23,48 @@ public class CashRegisterApp {
 		menu();
 		
 		
+		System.out.println("");
+		do {
+			System.out.println("What item would you like to order?");
+			Scanner scan = new Scanner(System.in);
+		int userSelect = scan.nextInt();
+		String userCont;
+		
+		if (userSelect == 1) {
+			//put cap in cart
+			System.out.println("");
+		}else if (userSelect == 2) {
+			//put coffee in cart 
+		}else if (userSelect == 3) {
+			//put oj in 
+		}else if (userSelect == 4) {
+			//put aj in cart 
+		}else if (userSelect == 5) {
+			//put smoothie
+		}else if (userSelect == 6) {
+			//put bagel
+		}else if (userSelect == 7) {
+			//donut 
+		}else if (userSelect == 8) {
+			//croissant 
+		}else if (userSelect == 9) {
+			//bfast sandy
+		}else if (userSelect == 10) {
+			//sneakers
+		}else if (userSelect == 11) {
+			//t shirt
+		}else if (userSelect == 12) {
+			//pants
+		}else if (userSelect == 13) {
+			//sweatshirt
+		}else {
+			System.out.println("Please enter a valid menu number.");
+		}while (userCont.equalsIgnoreCase("y"));
+		
+		System.out.println("Thanks for your order!");
+		System.out.println("Heres what you got:");
+		
+			
 		
 		
 		
@@ -36,7 +79,7 @@ public class CashRegisterApp {
 		System.out.printf("%-18s%-12s\n","Item","Price");
 		System.out.println("````````````````````````");
 		for (int i = 0; i < cart.getCart().size(); i++)
-		System.out.printf("%-18s$%-12s\n",cart.getCart().get(i).getName(),cart.getCart().get(i).getPrice());
+		System.out.printf(i+1 + " " + "%-18s$%-12s\n",cart.getCart().get(i).getName(),cart.getCart().get(i).getPrice());
 	}
 	
 	
@@ -70,4 +113,6 @@ public class CashRegisterApp {
 		}
 		return menu;
 	}
+	
+	
 }
