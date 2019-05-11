@@ -75,7 +75,7 @@ public class CashRegisterApp {
 			System.out.println("Thanks for your order!");
 			System.out.println("Heres what you got:");
 
-			// receipt();
+			receipt();
 
 		}
 
@@ -179,4 +179,26 @@ public class CashRegisterApp {
 		return menu;
 	}
 
+	public static void receipt() {
+		double subTotal = 0;
+		int counter = 1;
+		System.out.println("           Items Purchased      ");
+		System.out.printf("# %-18s%-12s%-12s%-12s\n", "Item", "Price", "Quantity", "Line Total");
+		System.out.println("```````````````````````````````````````````````````````````````");
+		for (int i = 0; i < cart.size(); i++) {
+			if (cart.get(i).getQuantity() != 0) {
+				System.out.printf(counter + " " + "%-18s$%-12s%-12s$%-12s\n", cart.get(i).getName(),
+						cart.get(i).getPrice(), cart.get(i).getQuantity(),
+						new DecimalFormat("#.00").format((cart.get(i).getPrice() * cart.get(i).getQuantity())));
+				subTotal += (cart.get(i).getPrice() * cart.get(i).getQuantity());
+				counter += 1;
+			}
+		}
+		System.out.println("_______________________________________________________________");
+		System.out.printf("  %-45s$%s", "Subtotal", new DecimalFormat("#.00").format(subTotal));
+		System.out.println();
+		System.out.println();
+	    
+		
+	}
 }
