@@ -53,6 +53,14 @@ public class Items {
 		this.quantity = quantity;
 	}
 
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 	@Override
 	public String toString() {
 		return name+":"+category+":"+description+":"+price+":"+quantity;

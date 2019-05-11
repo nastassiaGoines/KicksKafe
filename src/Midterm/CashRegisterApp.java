@@ -75,12 +75,13 @@ public class CashRegisterApp {
 			System.out.println("Thanks for your order!");
 			System.out.println("Heres what you got:");
 
-			// receipt();
+			
 
 		}
 
 		System.out.println();
 		System.out.println("Thanks for visiting KicksKafe!");
+		receipt();
 		System.out.println("Goodbye!");
 		
 		scan.close();
@@ -92,10 +93,10 @@ public class CashRegisterApp {
 		System.out.println("-------------");
 		System.out.println();
 		System.out.println("           Menu      ");
-		System.out.printf("# %-18s%-12s\n", "Item", "Price");
-		System.out.println("````````````````````````");
+		System.out.printf("#  %-18s%-12s\n", "Item", "Price");
+		System.out.println("```````````````````````````");
 		for (int i = 0; i < cart.size(); i++)
-			System.out.printf(i + 1 + " " + "%-18s$%-12s\n", cart.get(i).getName(), cart.get(i).getPrice());
+			System.out.printf("%-3s%-18s$%-12s\n", i+ 1,cart.get(i).getName(), cart.get(i).getPrice());
 		System.out.println();
 	}
 
@@ -103,11 +104,11 @@ public class CashRegisterApp {
 		double subTotal = 0;
 		int counter = 1;
 		System.out.println("           Cart      ");
-		System.out.printf("# %-18s%-12s%-12s%-12s\n", "Item", "Price", "Quantity", "Line Total");
+		System.out.printf("#  %-18s %-12s%-12s %-12s\n", "Item", "Price", "Quantity", "Line Total");
 		System.out.println("```````````````````````````````````````````````````````````````");
 		for (int i = 0; i < cart.size(); i++) {
 			if (cart.get(i).getQuantity() != 0) {
-				System.out.printf(counter + " " + "%-18s$%-12s%-12s$%-12s\n", cart.get(i).getName(),
+				System.out.printf("%-3s%-18s$%-12s%-12s$%-12s\n", counter,cart.get(i).getName(),
 						cart.get(i).getPrice(), cart.get(i).getQuantity(),
 						new DecimalFormat("#.00").format((cart.get(i).getPrice() * cart.get(i).getQuantity())));
 				subTotal += (cart.get(i).getPrice() * cart.get(i).getQuantity());
@@ -115,25 +116,25 @@ public class CashRegisterApp {
 			}
 		}
 		System.out.println("_______________________________________________________________");
-		System.out.printf("  %-45s$%s", "Subtotal", new DecimalFormat("#.00").format(subTotal));
+		System.out.printf("   %-43s$%s", "Subtotal", new DecimalFormat("#.00").format(subTotal));
 		System.out.println();
 		System.out.println();
 	}
 
 	public static void viewLine(int i) {
 		System.out.println();
-		System.out.printf("%-18s%-12s%-24s\n", "Item", "Price", "Description");
-		System.out.println("`````````````````````````````````````````");
-		System.out.printf("%-18s$%-12s%-24s\n", cart.get(i - 1).getName(), cart.get(i - 1).getPrice(),
+		System.out.printf("%-18s%-18s %-12s%-24s\n", "Item", "Category", "Price", "Description");
+		System.out.println("`````````````````````````````````````````````````````````````````");
+		System.out.printf("%-18s%-18s$%-12s%-24s\n", cart.get(i - 1).getName(), cart.get(i-1).getCategory(), cart.get(i - 1).getPrice(),
 				cart.get(i - 1).getDescription());
 		System.out.println();
 	}
 
 	public static void lineTotal(int i, int quantity) {
 		System.out.println();
-		System.out.printf("%-18s%-12s%-12s$%-12s\n", "Item", "Price", "Quantity", "Subtotal");
-		System.out.println("`````````````````````````````````````````");
-		System.out.printf("%-18s$%-12s%-12s$%-12s\n", cart.get(i - 1).getName(), cart.get(i - 1).getPrice(), quantity,
+		System.out.printf("%-18s %-18s%-12s %-12s\n", "Item", "Price", "Quantity", "Subtotal");
+		System.out.println("`````````````````````````````````````````````````````````````````");
+		System.out.printf("%-18s$%-18s%-12s$%-12s\n", cart.get(i - 1).getName(), cart.get(i - 1).getPrice(), quantity,
 				new DecimalFormat("#.00").format(cart.get(i - 1).getPrice() * quantity));
 		System.out.println();
 	}
@@ -179,4 +180,33 @@ public class CashRegisterApp {
 		return menu;
 	}
 
+	public static void receipt() {
+		double subTotal = 0;
+		int counter = 1;
+		System.out.println("           Items Purchased      ");
+		System.out.printf("# %-18s%-12s%-12s%-12s\n", "Item", "Price", "Quantity", "Line Total");
+		System.out.println("```````````````````````````````````````````````````````````````");
+		for (int i = 0; i < cart.size(); i++) {
+			if (cart.get(i).getQuantity() != 0) {
+				System.out.printf(counter + " " + "%-18s$%-12s%-12s$%-12s\n", cart.get(i).getName(),
+						cart.get(i).getPrice(), cart.get(i).getQuantity(),
+						new DecimalFormat("#.00").format((cart.get(i).getPrice() * cart.get(i).getQuantity())));
+				subTotal += (cart.get(i).getPrice() * cart.get(i).getQuantity());
+				counter += 1;
+				
+			}
+		}
+		double salesTax = (subTotal * 1.06) - subTotal;
+		double total = subTotal + salesTax;
+		System.out.println("_______________________________________________________________");
+		System.out.printf("  %-45s$%s", "Subtotal", new DecimalFormat("#.00").format(subTotal));
+		System.out.printf("\n  %-45s$%s", "Sales Tax", new DecimalFormat("#.00").format(salesTax));
+		System.out.printf("\n  %-45s$%s", "Total", new DecimalFormat("#.00").format(total));
+		//details from user choice of payment 
+		// card num, check num, or change
+		System.out.println();
+		System.out.println();
+	    
+		
+	}
 }
