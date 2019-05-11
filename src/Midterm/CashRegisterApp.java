@@ -202,6 +202,8 @@ public class CashRegisterApp {
 		System.out.printf("  %-45s$%s", "Subtotal", new DecimalFormat("#.00").format(subTotal));
 		System.out.printf("\n  %-45s$%s", "Sales Tax", new DecimalFormat("#.00").format(salesTax));
 		System.out.printf("\n  %-45s$%s", "Total", new DecimalFormat("#.00").format(total));
+		//details from user choice of payment 
+		// card num, check num, or change
 		System.out.println();
 		System.out.println();
 	    
