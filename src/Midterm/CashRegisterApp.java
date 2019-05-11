@@ -75,12 +75,13 @@ public class CashRegisterApp {
 			System.out.println("Thanks for your order!");
 			System.out.println("Heres what you got:");
 
-			receipt();
+			
 
 		}
 
 		System.out.println();
 		System.out.println("Thanks for visiting KicksKafe!");
+		receipt();
 		System.out.println("Goodbye!");
 		
 		scan.close();
@@ -192,10 +193,15 @@ public class CashRegisterApp {
 						new DecimalFormat("#.00").format((cart.get(i).getPrice() * cart.get(i).getQuantity())));
 				subTotal += (cart.get(i).getPrice() * cart.get(i).getQuantity());
 				counter += 1;
+				
 			}
 		}
+		double salesTax = (subTotal * 1.06) - subTotal;
+		double total = subTotal + salesTax;
 		System.out.println("_______________________________________________________________");
 		System.out.printf("  %-45s$%s", "Subtotal", new DecimalFormat("#.00").format(subTotal));
+		System.out.printf("\n  %-45s$%s", "Sales Tax", new DecimalFormat("#.00").format(salesTax));
+		System.out.printf("\n  %-45s$%s", "Total", new DecimalFormat("#.00").format(total));
 		System.out.println();
 		System.out.println();
 	    
