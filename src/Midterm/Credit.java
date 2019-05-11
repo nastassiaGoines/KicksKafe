@@ -1,5 +1,7 @@
 package Midterm;
 
+import java.util.Scanner;
+
 public class Credit extends Payment {
 	
 	private long creditNum;
@@ -23,6 +25,13 @@ public class Credit extends Payment {
 	}
 	public void setCvvNum(String cvvNum) {
 		this.cvvNum = cvvNum;
+	}
+	@Override
+	public String processingPayment(Scanner scan, double total) {
+		String ccNumber = Validation.getString(scan, "Enter Credit Card Number");
+		String expDate = Validation.getString(scan, "Get expiration date");
+		String cvv = Validation.getString(scan, "Get cvv");
+		return "Credit card Number" + ccNumber + "expiration date" + expDate + "cvv" + cvv + "Total" + total;
 	}
 	@Override
 	public String processingPayment() {

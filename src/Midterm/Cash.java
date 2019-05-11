@@ -1,5 +1,7 @@
 package Midterm;
 
+import java.util.Scanner;
+
 public class Cash extends Payment {
 
 	private double change;
@@ -20,9 +22,22 @@ public class Cash extends Payment {
 	}
 	@Override
 	public String processingPayment() {
-		// TODO Auto-generated method stub
+	
+		
 		return null;
+		
 	}
+	
+	public String processingPayment(Scanner scan, double total){
+		double tender = Validation.getDouble(scan, "Enter amount Tendered");
+		double change = tender - total;
+	
+		
+		return "Payment method cash, Total" + total + "Amount tendered: $" + tender + "Change:  $ " + change;		
+	}
+	
+	
+	
 	
 	
 	

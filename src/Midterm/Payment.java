@@ -1,19 +1,21 @@
 package Midterm;
 
+import java.util.Scanner;
+
 public abstract class Payment {
 
-	private String processing;
-	
-	
+
 	public Payment() {
-		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 
 	public abstract String processingPayment();
-	
-	
-	
+
+
+	public String processingPayment(Scanner scan, double total) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

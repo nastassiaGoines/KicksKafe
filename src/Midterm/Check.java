@@ -1,5 +1,7 @@
 package Midterm;
 
+import java.util.Scanner;
+
 public class Check extends Payment {
 	
 	private boolean id;
@@ -24,6 +26,11 @@ public class Check extends Payment {
 	}
 	public void setCheckNum(long checkNum) {
 		this.checkNum = checkNum;
+	}
+	@Override
+	public String processingPayment(Scanner scan, double total) {
+		double checkNumber = Validation.getDouble(scan, "Enter check number");
+		return "Check number" + checkNumber + "Total";
 	}
 	@Override
 	public String processingPayment() {
