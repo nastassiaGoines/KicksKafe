@@ -10,4 +10,4 @@
 84.95:Apparel:Sneakers:The classic Nike style you love - with an added flair from the KicksKafe team.
 34.95:Apparel:T - Shirt:Athletic comfort, everyday style.
 54.95:Apparel:Sweatpants:Premium jogger fit.
-64.95:Apparel:Sweatshirt:"Super soft blended fabric, with the KicksKafe style.
+64.95:Apparel:Sweatshirt:Super soft blended fabric, with the KicksKafe style.

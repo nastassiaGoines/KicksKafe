@@ -1,5 +1,6 @@
 package Midterm;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class Credit extends Payment {
@@ -28,16 +29,12 @@ public class Credit extends Payment {
 	}
 	@Override
 	public String processingPayment(Scanner scan, double total) {
-		String ccNumber = Validation.getString(scan, "Enter Credit Card Number");
-		String expDate = Validation.getString(scan, "Get expiration date");
-		String cvv = Validation.getString(scan, "Get cvv");
-		return "Credit card Number" + ccNumber + "expiration date" + expDate + "cvv" + cvv + "Total" + total;
+		String ccNumber = Validation.getString(scan, "Enter Credit Card Number: ");
+		String expDate = Validation.getString(scan, "Enter Expiration Date: ");
+		String cvv = Validation.getString(scan, "Get cvv: ");
+		return "\nCredit card Number: " + ccNumber + "\nExpiration Date" + expDate + "\ncvv: " + cvv + "\nAmount Charged: " + new DecimalFormat("#.00").format(total);
 	}
-	@Override
-	public String processingPayment() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 	
 	
 }

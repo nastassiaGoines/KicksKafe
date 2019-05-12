@@ -10,12 +10,9 @@ public abstract class Payment {
 	}
 
 
-	public abstract String processingPayment();
+	public abstract String processingPayment(Scanner scan, double total);
 
 
-	public String processingPayment(Scanner scan, double total) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 }

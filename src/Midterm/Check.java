@@ -1,5 +1,6 @@
 package Midterm;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class Check extends Payment {
@@ -30,14 +31,9 @@ public class Check extends Payment {
 	@Override
 	public String processingPayment(Scanner scan, double total) {
 		double checkNumber = Validation.getDouble(scan, "Enter check number");
-		return "Check number" + checkNumber + "Total";
+		return "\nCheck number: " + checkNumber + "\nCheck Amount: " + new DecimalFormat("#.00").format(total);
 	}
-	@Override
-	public String processingPayment() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
+
 	
 
 }
