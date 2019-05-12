@@ -18,17 +18,20 @@ public class CashRegisterApp {
 	public static void main(String[] args) {
 
 		Scanner scan = new Scanner(System.in);
-
+		System.out.println("Welcome to Kicks Kafe!!");
+		
 		while (true) {
 
-			/*
-			 * TODO We need to add item categories, maybe have 3 sub-menus for categories
-			 * 
-			 * Need to do payment method
-			 * 
-			 * Need receipt method after purchase
-			 */
+			int menuChoice = Validation.getInt(scan, "What would you like to purchase?(Please enter a number(1-3) according to your choice) \n1.Beverages \n2.Snacks \n3.Apparel", 1, 3);
 
+			if (menuChoice == 1) {
+				beverageMenu();
+			}else if (menuChoice == 2) {
+				snackMenu();
+			}else if (menuChoice == 3) {
+				apparelMenu();
+			}
+			
 			menu();
 			int userSelect = Validation.getInt(scan,
 					"What item would you like to order?\n(0 to view cart, -1 to quit): ", -1, 13);
@@ -93,6 +96,42 @@ public class CashRegisterApp {
 		System.out.println("-------------");
 		System.out.println();
 		System.out.println("           Menu      ");
+		System.out.printf("#  %-18s%-12s\n", "Item", "Price");
+		System.out.println("```````````````````````````");
+		for (int i = 0; i < cart.size(); i++)
+			System.out.printf("%-3s%-18s$%-12s\n", i+ 1,cart.get(i).getName(), cart.get(i).getPrice());
+		System.out.println();
+	}
+	
+	public static void beverageMenu() {
+		System.out.println("Menu");
+		System.out.println("-------------");
+		System.out.println();
+		System.out.println("           Beverage Menu      ");
+		System.out.printf("#  %-18s%-12s\n", "Item", "Price");
+		System.out.println("```````````````````````````");
+		for (int i = 0; i < cart.size(); i++)
+			System.out.printf("%-3s%-18s$%-12s\n", i+ 1,cart.get(i).getName(), cart.get(i).getPrice());
+		System.out.println();
+	}
+	
+	public static void snackMenu() {
+		System.out.println("Menu");
+		System.out.println("-------------");
+		System.out.println();
+		System.out.println("           Snacks Menu      ");
+		System.out.printf("#  %-18s%-12s\n", "Item", "Price");
+		System.out.println("```````````````````````````");
+		for (int i = 0; i < cart.size(); i++)
+			System.out.printf("%-3s%-18s$%-12s\n", i+ 1,cart.get(i).getName(), cart.get(i).getPrice());
+		System.out.println();
+	}
+	
+	public static void apparelMenu() {
+		System.out.println("Menu");
+		System.out.println("-------------");
+		System.out.println();
+		System.out.println("           Apparel Menu      ");
 		System.out.printf("#  %-18s%-12s\n", "Item", "Price");
 		System.out.println("```````````````````````````");
 		for (int i = 0; i < cart.size(); i++)
