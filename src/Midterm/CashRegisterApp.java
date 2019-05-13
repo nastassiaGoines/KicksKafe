@@ -23,28 +23,41 @@ public class CashRegisterApp {
 			System.out.println();
 			System.out.println("Welcome to Kicks Kafe!!");
 			int menuChoice = Validation.getInt(scan,
-					"\n1.Beverages \n2.Snacks \n3.Apparel\nWhat would you like to purchase?(Please enter a number(1-3) according to your choice): ",
-					0, 3);
+					"\n1.Beverages \n2.Snacks \n3.Apparel\n\nEnter 1-3 for menu (0 for Cart, -1 to Checkout): ", -1, 3);
 			int userSelect = 0;
-			
+
 			if (menuChoice == 1) {
 				beverageMenu();
-				userSelect = Validation.getInt(scan,
-						"What item would you like to order?\n(0 to view cart, -1 to quit): ", -1, 5);
+				userSelect = Validation.getInt(scan, "What item would you like to order?: ", -1, 5);
 			} else if (menuChoice == 2) {
 				snackMenu();
-				userSelect = Validation.getInt(scan,
-						"What item would you like to order?\n(0 to view cart, -1 to quit): ", 6, 9);
+				userSelect = Validation.getInt(scan, "What item would you like to order?: ", 6, 9);
 			} else if (menuChoice == 3) {
 				apparelMenu();
-				userSelect = Validation.getInt(scan,
-						"What item would you like to order?\n(0 to view cart, -1 to quit): ", 10, 13);
+				userSelect = Validation.getInt(scan, "What item would you like to order?: ", 10, 13);
 			} else if (menuChoice == 0) {
 				viewCart();
 				continue;
+			} else if (menuChoice == -1) {
+				int goInt = Validation.getGo(scan, "Are you sure you want to checkout? (y/n): ");
+				if (goInt == 1) {
+					receipt(scan);
+					goInt = Validation.getGo(scan, "Would you like to keep shopping? (y/n): ");
+					if (goInt == 1) {
+						continue;
+					} else if (goInt == 2) {
+						goInt = Validation.getGo(scan, "Are you sure you want to quit? (y/n): ");
+						if (goInt == 1) {
+							break;
+						} else if (goInt == 2) {
+							System.out.println("Geez... Just asking...");
+							continue;
+						}
+					}
+				} else {
+					continue;
+				}
 			}
-			//userSelect = Validation.getInt(scan,
-			//		"What item would you like to order?\n(0 to view cart, -1 to quit): ", -1, 13);
 			int userQuant = 0;
 
 			if (userSelect >= 1) {
@@ -58,27 +71,6 @@ public class CashRegisterApp {
 				// ask to add
 				lineTotal(userSelect, userQuant);
 				add(userSelect, userQuant, scan);
-				int goInt = Validation.getGo(scan, "Would you like to keep shopping? (y/n): ");
-				if (goInt == 1) {
-					continue;
-				} else if (goInt == 2) {
-					goInt = Validation.getGo(scan, "Are you sure you want to check out? (y/n): ");
-					if (goInt == 1) {
-						receipt(scan);
-					} else {
-						continue;
-					}
-				}
-			} else if (userSelect == -1) {
-				int goInt = Validation.getGo(scan, "Are you sure you want to quit? (y/n): ");
-				if (goInt == 1) {
-					break;
-				} else if (goInt == 2) {
-					System.out.println("Geez... Just asking...");
-					continue;
-				}
-			} else if (userSelect == 0) {
-				viewCart();
 			}
 		}
 
@@ -129,6 +121,7 @@ public class CashRegisterApp {
 	public static void viewCart() {
 		double subTotal = 0;
 		int counter = 1;
+		System.out.println();
 		System.out.println("           Cart      ");
 		System.out.printf("#  %-18s %-12s%-12s %-12s\n", "Item", "Price", "Quantity", "Line Total");
 		System.out.println("```````````````````````````````````````````````````````````````");
@@ -207,46 +200,56 @@ public class CashRegisterApp {
 	}
 
 	public static void receipt(Scanner scan) {
-		double subTotal = 0;
-		int counter = 1;
-		System.out.println("           Items Purchased      ");
-		System.out.printf("# %-18s%-12s%-12s%-12s\n", "Item", "Price", "Quantity", "Line Total");
-		System.out.println("```````````````````````````````````````````````````````````````");
+		int checkCart = 0;
 		for (int i = 0; i < cart.size(); i++) {
-			if (cart.get(i).getQuantity() != 0) {
-				System.out.printf(counter + " " + "%-18s$%-12s%-12s$%-12s\n", cart.get(i).getName(),
-						cart.get(i).getPrice(), cart.get(i).getQuantity(),
-						new DecimalFormat("#.00").format((cart.get(i).getPrice() * cart.get(i).getQuantity())));
-				subTotal += (cart.get(i).getPrice() * cart.get(i).getQuantity());
-				counter += 1;
-				System.out.println();
-				System.out.println("Thanks for visiting KicksKafe!");
-				
-			}
+			checkCart += cart.get(i).getQuantity();
 		}
-		double salesTax = (subTotal * 1.06) - subTotal;
-		double total = subTotal + salesTax;
-		System.out.println("_______________________________________________________________");
-		System.out.printf("  %-43s$%s", "Subtotal", new DecimalFormat("#.00").format(subTotal));
-		System.out.printf("\n  %-43s$%s", "Sales Tax", new DecimalFormat("#.00").format(salesTax));
-		System.out.printf("\n  %-43s$%s", "Total", new DecimalFormat("#.00").format(total));
-		System.out.println();
-		System.out.println();
-		// details from user choice of payment
-		// card num, check num, or change
+		if (checkCart == 0) {
+			System.out.println("Cart is empty, can't checkout!");
+		} else {
 
-		Payment pay = null;
-		int userPay = Validation.getInt(scan, "Enter 1 for Cash, 2 for Check, or 3 for Credit: ", 1, 3);
+			double subTotal = 0;
+			int counter = 1;
+			System.out.println();
+			System.out.println("           Items Purchased      ");
+			System.out.printf("# %-18s%-12s%-12s%-12s\n", "Item", "Price", "Quantity", "Line Total");
+			System.out.println("```````````````````````````````````````````````````````````````");
+			for (int i = 0; i < cart.size(); i++) {
+				if (cart.get(i).getQuantity() != 0) {
+					System.out.printf(counter + " " + "%-18s$%-12s%-12s$%-12s\n", cart.get(i).getName(),
+							cart.get(i).getPrice(), cart.get(i).getQuantity(),
+							new DecimalFormat("#.00").format((cart.get(i).getPrice() * cart.get(i).getQuantity())));
+					subTotal += (cart.get(i).getPrice() * cart.get(i).getQuantity());
+					counter += 1;
+					System.out.println();
+					System.out.println("Thanks for visiting KicksKafe!");
 
-		if (userPay == 1) {
-			pay = new Cash();
-			System.out.println(pay.processingPayment(scan, total));
-		} else if (userPay == 2) {
-			pay = new Check();
-			System.out.println(pay.processingPayment(scan, total));
-		} else if (userPay == 3) {
-			pay = new Credit();
-			System.out.println(pay.processingPayment(scan, total));
+				}
+			}
+			double salesTax = (subTotal * 1.06) - subTotal;
+			double total = subTotal + salesTax;
+			System.out.println("_______________________________________________________________");
+			System.out.printf("  %-43s$%s", "Subtotal", new DecimalFormat("#.00").format(subTotal));
+			System.out.printf("\n  %-43s$%s", "Sales Tax", new DecimalFormat("#.00").format(salesTax));
+			System.out.printf("\n  %-43s$%s", "Total", new DecimalFormat("#.00").format(total));
+			System.out.println();
+			System.out.println();
+			// details from user choice of payment
+			// card num, check num, or change
+
+			Payment pay = null;
+			int userPay = Validation.getInt(scan, "Enter 1 for Cash, 2 for Check, or 3 for Credit: ", 1, 3);
+
+			if (userPay == 1) {
+				pay = new Cash();
+				System.out.println(pay.processingPayment(scan, total));
+			} else if (userPay == 2) {
+				pay = new Check();
+				System.out.println(pay.processingPayment(scan, total));
+			} else if (userPay == 3) {
+				pay = new Credit();
+				System.out.println(pay.processingPayment(scan, total));
+			}
 		}
 	}
 }

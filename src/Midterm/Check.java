@@ -30,7 +30,7 @@ public class Check extends Payment {
 	}
 	@Override
 	public String processingPayment(Scanner scan, double total) {
-		double checkNumber = Validation.getDouble(scan, "Enter check number");
+		String checkNumber = Validation.getStringMatchingRegex(scan, "Enter check number", "\\d{6}");
 		return "\nCheck number: " + checkNumber + "\nCheck Amount: " + new DecimalFormat("#.00").format(total);
 	}
 
