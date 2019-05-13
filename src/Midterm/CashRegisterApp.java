@@ -25,19 +25,26 @@ public class CashRegisterApp {
 			int menuChoice = Validation.getInt(scan,
 					"\n1.Beverages \n2.Snacks \n3.Apparel\nWhat would you like to purchase?(Please enter a number(1-3) according to your choice): ",
 					0, 3);
-
+			int userSelect = 0;
+			
 			if (menuChoice == 1) {
 				beverageMenu();
+				userSelect = Validation.getInt(scan,
+						"What item would you like to order?\n(0 to view cart, -1 to quit): ", -1, 5);
 			} else if (menuChoice == 2) {
 				snackMenu();
+				userSelect = Validation.getInt(scan,
+						"What item would you like to order?\n(0 to view cart, -1 to quit): ", 6, 9);
 			} else if (menuChoice == 3) {
 				apparelMenu();
+				userSelect = Validation.getInt(scan,
+						"What item would you like to order?\n(0 to view cart, -1 to quit): ", 10, 13);
 			} else if (menuChoice == 0) {
 				viewCart();
 				continue;
 			}
-			int userSelect = Validation.getInt(scan,
-					"What item would you like to order?\n(0 to view cart, -1 to quit): ", -1, 13);
+			//userSelect = Validation.getInt(scan,
+			//		"What item would you like to order?\n(0 to view cart, -1 to quit): ", -1, 13);
 			int userQuant = 0;
 
 			if (userSelect >= 1) {
@@ -212,7 +219,9 @@ public class CashRegisterApp {
 						new DecimalFormat("#.00").format((cart.get(i).getPrice() * cart.get(i).getQuantity())));
 				subTotal += (cart.get(i).getPrice() * cart.get(i).getQuantity());
 				counter += 1;
-
+				System.out.println();
+				System.out.println("Thanks for visiting KicksKafe!");
+				
 			}
 		}
 		double salesTax = (subTotal * 1.06) - subTotal;
